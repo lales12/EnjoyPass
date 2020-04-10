@@ -1,4 +1,4 @@
-pragma solidity < 0.5.0;
+pragma solidity < 0.6.0;
 
 
 contract EnjoyPassContract {
@@ -59,5 +59,9 @@ contract EnjoyPassContract {
     
     function checkUser(uint disease, address user) public view returns (bool validity) {
         return diseases[disease].users[user] > now;
+    }
+
+    function getUserValidity(uint disease, address user) public view returns (uint timestamp) {
+        return diseases[disease].users[user];
     }
 }

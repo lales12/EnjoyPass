@@ -2,9 +2,14 @@
 
 This project has three main parts and folders:
 
+- Documentation
 - BlockChain
 - Application
 - Backend
+
+## Documentation
+
+Here you can found all the data research and presentations scripts.
 
 ## BlockChain
 
