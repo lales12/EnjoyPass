@@ -13,7 +13,7 @@ This project has three main parts and folders:
 Para realizar la demo de la app, se necesitan dos dispositivos móviles para ejercer el rol de usuario y de validador. Los pasos a seguir son:
 
 ### 1. Crear usuario
-Tienes que entrar en la web [www.enjoyapp.es](http://enjoyapp.es) y descargar la app. A continuación, la instalas en tu dispositivo móvil.
+Tienes que entrar en la web [www.enjoypass.es](http://enjoypass.es) y descargar la app. A continuación, la instalas en tu dispositivo móvil.
 
  En la pantalla de inicio pulsa crear nueva cuenta y verás tu código QR. Si presionas el botón ver código, te saldrá tu dirección pública.
 
@@ -26,7 +26,7 @@ Por último también puedes eliminar tu cuenta de tu dispositivo.
 ### 2. Crear usuario validador
 Este usuario validador corresponde a la fase de acceso del evento. 
 
-Tienes que entrar en la web [www.enjoyapp.es](http://enjoyapp.es) y en el footer hay un link dirigido a empresas organizadoras de eventos. En ese link podrás descargar la app de validación. 
+Tienes que entrar en la web [www.enjoypass.es](http://enjoypass.es) y en el footer hay un link dirigido a empresas organizadoras de eventos. En ese link podrás descargar la app de validación. 
 
 
 ### IMPORTANTE
