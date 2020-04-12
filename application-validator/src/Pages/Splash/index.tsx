@@ -54,7 +54,7 @@ const SplashPage = () => {
     }
     return (
         <View style={styles.container}>
-            {loading ? <Image source={moveLogo} style={styles.logo} /> : <Image source={staticLogo} style={styles.logo} />}
+            {loading ? <Image source={staticLogo} style={styles.logo} /> : <Image source={staticLogo} style={styles.logo} />}
             {!loading && !creatingAccount ? (
                 <View style={styles.actionsContainer}>
                     <Button

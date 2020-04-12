@@ -37,10 +37,10 @@ export const styles = StyleSheet.create({
         marginTop: 30,
     },
     actionsContainer: {
-        marginTop: 40,
+        marginTop: 10,
     },
     textContainer: {
-        height: 100,
+        height: 80,
         width: 250,
         alignSelf: "center",
         marginTop: 40,
