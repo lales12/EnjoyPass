@@ -160,15 +160,22 @@ video {
     margin-right: 4px;
 }
 @media only screen and (max-width: 540px) {
-    #textbox {
-        height: 240px;
+    body {
+        background-size: 1200px;
     }
-     .fontsize-xL {
-        font-size: 95px;
-        line-height: 80px;
+    .header {
+        padding: 20px 10px;
+    }
+    #textbox {
+        height: auto !important;
+    }
+    .fontsize-xL {
+        font-size: 38px;
+        line-height: 38px;
     }
    .content {
-    padding-top: 22%;
+        padding: 20px 10px;
+    /* padding-top: 22%; */
      }
 }
 @media only screen and (max-width: 460px) {
@@ -193,4 +200,3 @@ video {
         height: 260px;
     }
 }
-
