@@ -42,7 +42,7 @@ export const OptionsMenu: FC<IProps> = (props: IProps): ReactElement => {
 
     if (props.options.includes(EOptions.Home)) {
         options.push(
-            <TouchableWithoutFeedback onPress={() => setRedirect(`/home/${props.address}`)}>
+            <TouchableWithoutFeedback key={EOptions.Home} onPress={() => setRedirect(`/home/${props.address}`)}>
                 <View style={styles.optionRow}>
                     <Text style={styles.fontOptions}>Página principal</Text>
                 </View>
@@ -52,7 +52,7 @@ export const OptionsMenu: FC<IProps> = (props: IProps): ReactElement => {
 
     if (props.options.includes(EOptions.Export)) {
         options.push(
-            <TouchableWithoutFeedback onPress={() => setRedirect(`/export-account/${props.address}`)}>
+            <TouchableWithoutFeedback key={EOptions.Export} onPress={() => setRedirect(`/export-account/${props.address}`)}>
                 <View style={styles.optionRow}>
                     <Text style={styles.fontOptions}>Exportar cuenta</Text>
                 </View>
@@ -62,7 +62,7 @@ export const OptionsMenu: FC<IProps> = (props: IProps): ReactElement => {
 
     if (props.options.includes(EOptions.DeleteAccount)) {
         options.push(
-            <TouchableWithoutFeedback onPress={() => setRedirect(`/delete-account/${props.address}`)}>
+            <TouchableWithoutFeedback key={EOptions.DeleteAccount} onPress={() => setRedirect(`/delete-account/${props.address}`)}>
                 <View style={styles.optionRow}>
                     <Text style={styles.fontOptions}>Eliminar cuenta</Text>
                 </View>

@@ -17,7 +17,7 @@ const eyeImage = require("../../assets/eye.png");
 interface IParams {
     address: string;
 }
-export const HomePage: FC = (): ReactElement => {
+const HomePage: FC = (): ReactElement => {
     const [viewAddress, setViewAddress] = useState(false);
     const [validDays, setValidDays] = useState(0);
 
@@ -68,3 +68,5 @@ export const HomePage: FC = (): ReactElement => {
         </Layout>
     );
 };
+
+export default HomePage;

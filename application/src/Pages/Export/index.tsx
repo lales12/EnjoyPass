@@ -13,7 +13,8 @@ import { useCredentialsContext } from "../../Context/CredentialProvider";
 interface IParams {
     address: string;
 }
-export const ExportPage: FC = (): ReactElement => {
+
+const ExportPage: FC = (): ReactElement => {
     const [privateKey, setPrivateKey] = useState("");
 
     const credentialsContext = useCredentialsContext();
@@ -40,3 +41,5 @@ export const ExportPage: FC = (): ReactElement => {
         </Layout>
     );
 };
+
+export default ExportPage;

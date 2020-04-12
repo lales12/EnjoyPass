@@ -6,6 +6,8 @@ import { useCredentialsContext } from "../../Context/CredentialProvider";
 import Button from "apsl-react-native-button";
 
 import { styles } from "./styles";
+import LayoutRegister from "../../Components/LayoutRegister";
+import { Redirect } from "react-router-native";
 
 const GenerateCredentialsPage = () => {
     const [password, setPassword] = useState("");
@@ -14,6 +16,7 @@ const GenerateCredentialsPage = () => {
     const [generatingCredentials, setGeneratingCredentials] = useState(false);
     const [errorPassword, setErrorPassword] = useState(false);
     const credentialsContext = useCredentialsContext();
+    const [redirect, setRedirect] = useState("");
 
     const onPress = async (ev: NativeSyntheticEvent<NativeTouchEvent>): Promise<void> => {
         setErrorPassword(false);
@@ -31,22 +34,26 @@ const GenerateCredentialsPage = () => {
         setGeneratingCredentials(true);
 
         try {
-            await credentialsContext.generateCredentials(password);
+            const address = await credentialsContext.generateCredentials(password);
+
+            setRedirect(`/home/${address}`);
         } finally {
             setGeneratingCredentials(false);
         }
     };
 
+    if (redirect) {
+        return <Redirect to={{ pathname: redirect }} />;
+    }
+
     return (
-        <View style={styles.container}>
+        <LayoutRegister title="Crea tu cuenta EnjoyPass">
             {generatingCredentials ? (
                 <View style={styles.loaderContainer}>
                     <Text style={styles.label}>Generando credenciales</Text>
                     <ActivityIndicator size="large" color={$primaryColor} />
                 </View>
             ) : null}
-
-            <Text style={styles.title}>Crea tu cuenta EnjoyPass</Text>
 
             <View style={styles.formControl}>
                 <Text style={styles.label}>Escribe tu contraseña</Text>
@@ -74,7 +81,7 @@ const GenerateCredentialsPage = () => {
                     Continuar
                 </Button>
             </View>
-        </View>
+        </LayoutRegister>
     );
 };
 

@@ -7,9 +7,9 @@ import { styles } from "./styles";
 const logo = require("../../assets/logo-solo.png");
 
 interface IProps {
-    children: ReactElement[] | null;
-    address: string;
-    options: EOptions[];
+    children: ReactElement[] | ReactElement | null;
+    address?: string;
+    options?: EOptions[];
 }
 
 export const Layout: FC<IProps> = (props: IProps): ReactElement => {
@@ -23,7 +23,7 @@ export const Layout: FC<IProps> = (props: IProps): ReactElement => {
 
             <View>{props.children}</View>
 
-            <OptionsMenu address={props.address} options={props.options} />
+            {props.address ? <OptionsMenu address={props.address} options={props.options} /> : null}
         </View>
     );
 };

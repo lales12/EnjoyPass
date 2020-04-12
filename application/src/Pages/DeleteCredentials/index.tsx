@@ -1,6 +1,6 @@
 import React, { ReactElement, FC, useState, useEffect } from "react";
 import { View, Text } from "react-native";
-import { useParams } from "react-router-native";
+import { useParams, Redirect } from "react-router-native";
 
 import { Layout } from "../../Components/Layout";
 import { EOptions } from "../../Components/OptionsMenu";
@@ -13,15 +13,22 @@ import Button from "apsl-react-native-button";
 interface IParams {
     address: string;
 }
-export const DeleteCredentialsPage: FC = (): ReactElement => {
+const DeleteCredentialsPage: FC = (): ReactElement => {
+    const [redirect, setRedirect] = useState("");
     const credentialsContext = useCredentialsContext();
     const params = useParams<IParams>();
 
     const menuOptions = [EOptions.Home, EOptions.Export];
 
     const deleteAccount = (): void => {
-        console.log("delete account");
+        credentialsContext.deleteKey().then(() => {
+            setRedirect("/");
+        });
     };
+
+    if (redirect) {
+        return <Redirect to={{ pathname: redirect }} />;
+    }
 
     return (
         <Layout address={params.address} options={menuOptions}>
@@ -38,3 +45,5 @@ export const DeleteCredentialsPage: FC = (): ReactElement => {
         </Layout>
     );
 };
+
+export default DeleteCredentialsPage;

@@ -16,7 +16,7 @@ export const $label = {
 
 export const $buttonPrimary = {
     backgroundColor: $primaryColor,
-    height: 37,
+    height: 40,
     borderColor: $primaryColor,
     borderRadius: 20,
     color: "#fff",
@@ -51,5 +51,5 @@ export const $alertText = {
 export const $buttonText = {
     color: "#fff",
     fontSize: 20,
-    fontWeight: "500",
+    fontWeight: "bold",
 };

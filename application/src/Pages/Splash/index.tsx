@@ -6,23 +6,27 @@ import { Redirect } from "react-router-native";
 
 import { styles } from "./styles";
 
-const logo = require("../../assets/enjoypass-app.gif");
+import Button from "apsl-react-native-button";
+
+const moveLogo = require("../../assets/enjoypass-app.gif");
+const staticLogo = require("../../assets/logo.png");
 
 const SplashPage = () => {
     const credentialsContext = useCredentialsContext();
     const [redirect, setRedirect] = useState("");
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        credentialsContext
-            .getPublicKey()
-            .then((publicKey: string) => {
-                setTimeout(() => {
+        setTimeout(() => {
+            credentialsContext
+                .getPublicKey()
+                .then((publicKey: string) => {
                     setRedirect(`/home/${publicKey}`);
-                }, 1000);
-            })
-            .catch((err) => {
-                setRedirect("/generate-credentials");
-            });
+                })
+                .catch(() => {
+                    setLoading(false);
+                });
+        }, 1000);
     }, []);
 
     if (redirect) {
@@ -36,7 +40,25 @@ const SplashPage = () => {
     }
     return (
         <View style={styles.container}>
-            <Image source={logo} style={styles.logo} />
+            {loading ? <Image source={moveLogo} style={styles.logo} /> : <Image source={staticLogo} style={styles.logo} />}
+            {!loading ? (
+                <View style={styles.actionsContainer}>
+                    <Button
+                        onPress={() => setRedirect("/generate-credentials")}
+                        style={{ ...styles.baseButton, ...styles.whiteButton }}
+                        textStyle={styles.transparentButtonText}
+                    >
+                        Crear una cuenta
+                    </Button>
+                    <Button
+                        onPress={() => setRedirect("/import-credentials")}
+                        style={{ ...styles.baseButton }}
+                        textStyle={styles.whiteButtonText}
+                    >
+                        Importar una cuenta
+                    </Button>
+                </View>
+            ) : null}
         </View>
     );
 };

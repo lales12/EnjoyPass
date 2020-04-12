@@ -6,9 +6,11 @@ import { Wallet } from "ethers";
 
 interface ICredentialsContext {
     getPublicKey: () => Promise<string>;
+    deleteKey: () => Promise<void>;
     getPrivateKey: () => Promise<string>;
-    setCredentials: (passphrase: string) => void;
-    generateCredentials: (passphrase: string) => void;
+    importCredentials: (privateKey: string) => Promise<string>;
+    generateCredentials: (passphrase: string) => Promise<string>;
+    signChallenge: (challenge: string) => Promise<string>;
 }
 
 const PRIVATE_KEY = "privateKey";
@@ -17,13 +19,19 @@ const CredentialsContext = createContext<ICredentialsContext>({
     getPublicKey: () => {
         throw new Error("Void implementation");
     },
+    deleteKey: () => {
+        throw new Error("Void implementation");
+    },
     getPrivateKey: () => {
         throw new Error("Void implementation");
     },
-    setCredentials: (passphrase: string) => {
+    importCredentials: (privateKey: string) => {
         throw new Error("Void implementation");
     },
     generateCredentials: (passphrase: string) => {
+        throw new Error("Void implementation");
+    },
+    signChallenge: (challenge: string) => {
         throw new Error("Void implementation");
     },
 });
@@ -34,17 +42,18 @@ interface IProps {
 
 export const CredentialsProvider: FC<IProps> = (props): ReactElement => {
     const getPublicKey = async (): Promise<string> => {
-        return new Promise((resolve, reject) => {
-            SecureStore.getItemAsync(PRIVATE_KEY)
-                .then((privateKey) => {
-                    if (privateKey) {
-                        const wallet = new Wallet(privateKey);
+        const privateKey = await SecureStore.getItemAsync(PRIVATE_KEY);
+        if (privateKey) {
+            const wallet = new Wallet(privateKey);
 
-                        resolve(wallet.address);
-                    }
-                })
-                .catch(() => reject("No stored credentials"));
-        });
+            return wallet.address;
+        }
+
+        throw new Error("Empty credentials");
+    };
+
+    const deleteKey = async (): Promise<void> => {
+        await SecureStore.deleteItemAsync(PRIVATE_KEY);
     };
 
     const getPrivateKey = async (): Promise<string> => {
@@ -61,22 +70,45 @@ export const CredentialsProvider: FC<IProps> = (props): ReactElement => {
         });
     };
 
-    const setCredentials = () => {
-        console.log("setting credentials");
+    const importCredentials = async (privateKey: string): Promise<string> => {
+        const wallet = new Wallet(privateKey);
+
+        await SecureStore.setItemAsync(PRIVATE_KEY, privateKey);
+
+        return wallet.address;
     };
 
-    const generateCredentials = async (passphrase: string): Promise<void> => {
-        return new Promise((resolve, reject) => {
-            const wallet = Wallet.createRandom(Date.now);
+    const signChallenge = async (challenge: string): Promise<string> => {
+        const privateKey = await SecureStore.getItemAsync(PRIVATE_KEY);
 
-            SecureStore.setItemAsync(PRIVATE_KEY, wallet.privateKey).then(() => {
-                console.log("stored");
-                resolve();
-            });
-        });
+        if (privateKey) {
+            const wallet = new Wallet(privateKey);
+
+            return wallet.signMessage(challenge);
+        }
+
+        throw new Error("Error retrieving private key to sign");
     };
+
+    const generateCredentials = async (passphrase: string): Promise<string> => {
+        const wallet = Wallet.createRandom(Date.now);
+
+        await SecureStore.setItemAsync(PRIVATE_KEY, wallet.privateKey);
+
+        return wallet.address;
+    };
+
     return (
-        <CredentialsContext.Provider value={{ setCredentials, getPublicKey, getPrivateKey, generateCredentials }}>
+        <CredentialsContext.Provider
+            value={{
+                importCredentials,
+                getPublicKey,
+                getPrivateKey,
+                generateCredentials,
+                signChallenge,
+                deleteKey,
+            }}
+        >
             {props.children}
         </CredentialsContext.Provider>
     );
