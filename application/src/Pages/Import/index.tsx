@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
+import { Redirect } from "react-router-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 
 import { styles } from "./styles";
+import Button from "apsl-react-native-button";
+
 import LayoutRegister from "../../Components/LayoutRegister";
 
-import Button from "apsl-react-native-button";
 import { useCredentialsContext } from "../../Context/CredentialProvider";
-import { Redirect } from "react-router-native";
+import { useSocketContext } from "../../Context/SocketProvider";
 
 export default function ImportPage() {
     const [hasPermission, setHasPermission] = useState(null);
@@ -15,6 +17,7 @@ export default function ImportPage() {
     const [importedAddress, setImportedAddress] = useState("");
     const [redirect, setRedirect] = useState("");
 
+    const socketContext = useSocketContext();
     const credentialsContext = useCredentialsContext();
 
     useEffect(() => {
@@ -46,6 +49,7 @@ export default function ImportPage() {
 
         try {
             const address = await credentialsContext.importCredentials(importedAddress);
+            socketContext.connect(address);
 
             setRedirect(`/home/${address}`);
         } catch {

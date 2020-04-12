@@ -8,8 +8,12 @@ export const styles = StyleSheet.create({
         fontWeight: "600",
         fontSize: 20,
     },
+    plusSign: {
+        fontSize: 24,
+    },
     optionRow: {
         flexDirection: "row",
+        justifyContent: "space-between",
         height: 50,
         paddingLeft: 40,
         paddingRight: 40,

@@ -75,7 +75,7 @@ export const OptionsMenu: FC<IProps> = (props: IProps): ReactElement => {
             <TouchableWithoutFeedback onPress={onShowMenu}>
                 <View style={styles.optionRow}>
                     <Text style={styles.fontOptions}>Opciones</Text>
-                    <Text style={styles.fontOptions}>+</Text>
+                    <Text style={{ ...styles.fontOptions, ...styles.plusSign }}>+</Text>
                 </View>
             </TouchableWithoutFeedback>
 

@@ -8,6 +8,7 @@ import Button from "apsl-react-native-button";
 import { styles } from "./styles";
 import LayoutRegister from "../../Components/LayoutRegister";
 import { Redirect } from "react-router-native";
+import { useSocketContext } from "../../Context/SocketProvider";
 
 const GenerateCredentialsPage = () => {
     const [password, setPassword] = useState("");
@@ -15,8 +16,10 @@ const GenerateCredentialsPage = () => {
     const [textPasswordError, setTextPasswordError] = useState("");
     const [generatingCredentials, setGeneratingCredentials] = useState(false);
     const [errorPassword, setErrorPassword] = useState(false);
-    const credentialsContext = useCredentialsContext();
     const [redirect, setRedirect] = useState("");
+
+    const socketContext = useSocketContext();
+    const credentialsContext = useCredentialsContext();
 
     const onPress = async (ev: NativeSyntheticEvent<NativeTouchEvent>): Promise<void> => {
         setErrorPassword(false);
@@ -35,7 +38,7 @@ const GenerateCredentialsPage = () => {
 
         try {
             const address = await credentialsContext.generateCredentials(password);
-
+            socketContext.connect(address);
             setRedirect(`/home/${address}`);
         } finally {
             setGeneratingCredentials(false);
