@@ -25,7 +25,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.enjoypass.enjoypass",
+      "package": "com.enjoypass.enjoypassvalidator",
       "versionCode": 1
     }
   }
