@@ -21,7 +21,7 @@ const GenerateCredentialsPage = () => {
     const socketContext = useSocketContext();
     const credentialsContext = useCredentialsContext();
 
-    const onPress = async (ev: NativeSyntheticEvent<NativeTouchEvent>): Promise<void> => {
+    const onPress = (): void => {
         setErrorPassword(false);
 
         if (password !== repeatPassword) {
@@ -34,15 +34,20 @@ const GenerateCredentialsPage = () => {
             setTextPasswordError("La longitud ha de ser de 8 caracteres");
             return;
         }
+
         setGeneratingCredentials(true);
 
-        try {
-            const address = await credentialsContext.generateCredentials(password);
-            socketContext.connect(address);
-            setRedirect(`/home/${address}`);
-        } finally {
-            setGeneratingCredentials(false);
-        }
+        setTimeout(() => {
+            credentialsContext
+                .generateCredentials(password)
+                .then((address: string) => {
+                    socketContext.connect(address);
+                    setRedirect(`/home/${address}`);
+                })
+                .catch(() => {
+                    setGeneratingCredentials(false);
+                });
+        }, 200);
     };
 
     if (redirect) {
@@ -53,8 +58,8 @@ const GenerateCredentialsPage = () => {
         <LayoutRegister title="Crea tu cuenta EnjoyPass">
             {generatingCredentials ? (
                 <View style={styles.loaderContainer}>
-                    <Text style={styles.label}>Generando credenciales</Text>
-                    <ActivityIndicator size="large" color={$primaryColor} />
+                    <ActivityIndicator size={70} color="#fff" />
+                    <Text style={styles.loaderText}>Un momento, estamos generando tu enjoypass</Text>
                 </View>
             ) : null}
 
@@ -80,7 +85,7 @@ const GenerateCredentialsPage = () => {
             </View>
 
             <View style={styles.buttonContainer}>
-                <Button disabled={generatingCredentials} style={styles.button} textStyle={styles.buttonText} onPress={onPress}>
+                <Button style={styles.button} textStyle={styles.buttonText} onPress={onPress}>
                     Continuar
                 </Button>
             </View>

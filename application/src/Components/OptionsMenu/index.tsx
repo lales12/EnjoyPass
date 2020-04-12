@@ -36,7 +36,6 @@ export const OptionsMenu: FC<IProps> = (props: IProps): ReactElement => {
     };
 
     if (redirect) {
-        console.log("Rdirect to", redirect);
         return <Redirect to={{ pathname: redirect }}></Redirect>;
     }
 
@@ -44,7 +43,7 @@ export const OptionsMenu: FC<IProps> = (props: IProps): ReactElement => {
         options.push(
             <TouchableWithoutFeedback key={EOptions.Home} onPress={() => setRedirect(`/home/${props.address}`)}>
                 <View style={styles.optionRow}>
-                    <Text style={styles.fontOptions}>Página principal</Text>
+                    <Text style={styles.fontOptions}>Mi enjoypass</Text>
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -74,8 +73,8 @@ export const OptionsMenu: FC<IProps> = (props: IProps): ReactElement => {
         <Animated.View style={{ ...styles.options, bottom: optionsBottomStyle }}>
             <TouchableWithoutFeedback onPress={onShowMenu}>
                 <View style={styles.optionRow}>
-                    <Text style={styles.fontOptions}>Opciones</Text>
-                    <Text style={{ ...styles.fontOptions, ...styles.plusSign }}>+</Text>
+                    <Text style={{ ...styles.fontOptions, ...styles.fontOption }}>Opciones</Text>
+                    <Text style={{ ...styles.fontOptions, ...styles.plusSign, ...styles.fontBold }}>+</Text>
                 </View>
             </TouchableWithoutFeedback>
 

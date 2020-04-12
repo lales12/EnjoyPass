@@ -1,10 +1,10 @@
 import React, { FC, ReactElement, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { NativeRouter, Route } from "react-router-native";
+import { useFonts } from "@use-expo/font";
 
 // Context
-import { useCredentialsContext } from "./Context/CredentialProvider";
-import { useSocketContext } from "./Context/SocketProvider";
+
 import { useEthereumContext } from "./Context/EthereumProvider";
 
 //Pages
@@ -19,7 +19,19 @@ import VerificationModal, { EStates } from "./Components/Modals/Verification";
 import { $backgroundColor } from "./Styles/variables";
 import ImportPage from "./Pages/Import";
 
+const regularFont = require("./assets/fonts/regular.ttf");
+const boldFont = require("./assets/fonts/bold.ttf");
+
 const AppContainer: FC = (): ReactElement => {
+    let [fontsLoaded] = useFonts({
+        regular: regularFont,
+        bold: boldFont,
+    });
+
+    if (!fontsLoaded) {
+        return <View></View>;
+    }
+
     return (
         <NativeRouter>
             <View style={styles.container}>

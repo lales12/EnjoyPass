@@ -5,7 +5,7 @@ import { config } from "../config";
 interface ISocketContext {
     //receiveChallenge: () => void;
     resolve: (address: string, response: string) => void;
-    sendChallenge: (address: string, challenge: string) => void;
+    sendChallenge: (address: string, challenge: string) => Promise<void>;
     connect: (address: string) => void;
     addListener: (cb: TListener) => void;
     addListenerError: (cb: TListener) => void;
@@ -58,6 +58,7 @@ export const SocketProvider: FC<IProps> = (props): ReactElement => {
         };
 
         client.on("response", (message: any) => {
+            console.log("Te envian respuesta", message);
             let listener;
             console.log("Te envia respuesta ", listeners.length);
 

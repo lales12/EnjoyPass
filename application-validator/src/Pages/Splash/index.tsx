@@ -30,15 +30,17 @@ const SplashPage = () => {
         }, 1000);
     }, []);
 
-    const onCreateAccount = async () => {
+    const onCreateAccount = () => {
         setCreatingAccount(true);
 
-        try {
-            const address = await credentialsContext.generateCredentials("");
-            return setRedirect(`/home/${address}`);
-        } finally {
-            setCreatingAccount(false);
-        }
+        setTimeout(async () => {
+            try {
+                const address = await credentialsContext.generateCredentials("");
+                return setRedirect(`/home/${address}`);
+            } finally {
+                setCreatingAccount(false);
+            }
+        }, 200);
     };
 
     if (redirect) {
@@ -52,22 +54,15 @@ const SplashPage = () => {
     }
     return (
         <View style={styles.container}>
-            {loading ? <Image source={moveLogo} style={styles.logo} /> : <Image source={staticLogo} style={styles.logo} />}
+            {loading ? <Image source={staticLogo} style={styles.logo} /> : <Image source={staticLogo} style={styles.logo} />}
             {!loading && !creatingAccount ? (
                 <View style={styles.actionsContainer}>
                     <Button
                         onPress={onCreateAccount}
                         style={{ ...styles.baseButton, ...styles.whiteButton }}
-                        textStyle={styles.transparentButtonText}
-                    >
-                        Crear una cuenta
-                    </Button>
-                    <Button
-                        onPress={() => setRedirect("/import-credentials")}
-                        style={{ ...styles.baseButton }}
                         textStyle={styles.whiteButtonText}
                     >
-                        Importar una cuenta
+                        ¡Empecemos!
                     </Button>
                 </View>
             ) : null}

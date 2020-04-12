@@ -18,7 +18,7 @@ export const Layout: FC<IProps> = (props: IProps): ReactElement => {
             <View style={styles.headerContainer}>
                 <Image source={logo} style={styles.logo} />
 
-                <Text style={styles.title}>Tu enjoypass</Text>
+                <Text style={styles.title}>Tu{"\n"}enjoypass</Text>
             </View>
 
             <View>{props.children}</View>

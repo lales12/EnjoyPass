@@ -19,11 +19,12 @@ export const styles = StyleSheet.create({
     remainDays: {
         color: $primaryColor,
         fontSize: 32,
-        fontWeight: "700",
+        fontFamily: "bold",
         alignSelf: "center",
     },
     rememberMessage: {
         textAlign: "center",
+        fontFamily: "regular",
         paddingTop: 30,
         width: 200,
     },
@@ -38,7 +39,7 @@ export const styles = StyleSheet.create({
     },
     button: {
         ...$buttonEmpty,
-        width: 150,
+        width: 200,
         alignSelf: "center",
     },
     buttonText: $buttonTextEmpty,

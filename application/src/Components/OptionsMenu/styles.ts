@@ -3,10 +3,15 @@ import { StyleSheet } from "react-native";
 import { $primaryColor } from "../../Styles/variables";
 
 export const styles = StyleSheet.create({
+    fontOption: {
+        fontFamily: "bold",
+        fontSize: 20,
+    },
     fontOptions: {
+        fontFamily: "regular",
         color: "#fff",
         fontWeight: "600",
-        fontSize: 20,
+        fontSize: 16,
     },
     plusSign: {
         fontSize: 24,

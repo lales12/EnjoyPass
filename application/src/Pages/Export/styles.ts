@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
     rememberMessage: {
         textAlign: "center",
         fontSize: 14,
+        fontFamily: "regular",
         color: $dangerColor,
         paddingTop: 30,
         width: 200,

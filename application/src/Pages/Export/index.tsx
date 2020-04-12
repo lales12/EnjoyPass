@@ -23,7 +23,6 @@ const ExportPage: FC = (): ReactElement => {
     const menuOptions = [EOptions.Home, EOptions.DeleteAccount];
 
     useEffect(() => {
-        console.log("getting key");
         credentialsContext.getPrivateKey().then((key: string) => {
             setPrivateKey(key);
         });

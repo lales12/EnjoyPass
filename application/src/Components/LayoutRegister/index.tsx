@@ -12,7 +12,6 @@ interface Iprops {
 const LayoutRegister: FC<Iprops> = (props: Iprops): ReactElement => {
     const [redirect, setRedirect] = useState("");
     const onBack = (): void => {
-        console.log("redirect");
         setRedirect("/");
     };
 

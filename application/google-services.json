@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "484885645042",
+    "firebase_url": "https://enjoypass-444fb.firebaseio.com",
+    "project_id": "enjoypass-444fb",
+    "storage_bucket": "enjoypass-444fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484885645042:android:649ffd6d2a1aa0682d326b",
+        "android_client_info": {
+          "package_name": "com.enjoypass.enjoypass"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484885645042-ag4arskurahsu2vmo8lkrpssvc75ko0n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx2k6FFcH69NGNPlsTtOJsaKnY1xOKN00"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "484885645042-ag4arskurahsu2vmo8lkrpssvc75ko0n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

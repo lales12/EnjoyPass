@@ -16,30 +16,31 @@ export const $label = {
 
 export const $buttonPrimary = {
     backgroundColor: $primaryColor,
-    height: 40,
+    height: 50,
     borderColor: $primaryColor,
-    borderRadius: 20,
+    borderRadius: 25,
     color: "#fff",
 };
 
 export const $buttonTextEmpty = {
     color: $primaryColor,
+    fontFamily: "bold",
     fontSize: 16,
 };
 
 export const $buttonEmpty = {
     backgroundColor: "transparent",
-    height: 37,
+    height: 50,
     borderColor: $primaryColor,
-    borderRadius: 20,
+    borderRadius: 25,
     color: $primaryColor,
 };
 
 export const $buttonDelete = {
     backgroundColor: "transparent",
-    height: 37,
+    height: 50,
     borderColor: $dangerColor,
-    borderRadius: 20,
+    borderRadius: 25,
     color: $dangerColor,
 };
 
@@ -50,6 +51,6 @@ export const $alertText = {
 
 export const $buttonText = {
     color: "#fff",
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 16,
+    fontFamily: "bold",
 };

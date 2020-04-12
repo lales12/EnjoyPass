@@ -13,7 +13,7 @@ interface ICredentialsContext {
     signChallenge: (challenge: string) => Promise<string>;
 }
 
-const PRIVATE_KEY = "validator-key";
+const PRIVATE_KEY = "validator-key-2";
 
 const CredentialsContext = createContext<ICredentialsContext>({
     getPublicKey: () => {

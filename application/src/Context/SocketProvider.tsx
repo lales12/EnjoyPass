@@ -38,8 +38,6 @@ export const SocketProvider: FC<IProps> = (props): ReactElement => {
 
     useEffect(() => {
         const reconnect = () => {
-            console.log("Try reconnect ", userAddress);
-
             if (client.connected && userAddress) {
                 client.emit("send-address", { address: userAddress });
                 return;
@@ -50,7 +48,6 @@ export const SocketProvider: FC<IProps> = (props): ReactElement => {
 
         client.on("challenge", (message: any) => {
             let listener;
-            console.log("te envia un challenge ", listeners.length);
 
             for (listener of listeners) {
                 listener(message);
@@ -65,7 +62,6 @@ export const SocketProvider: FC<IProps> = (props): ReactElement => {
     };
 
     const resolve = async (address: string, response: string) => {
-        console.log("Sending response to address", address);
         await client.emit("resolve", { address, response });
     };
 

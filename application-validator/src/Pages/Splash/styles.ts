@@ -11,6 +11,8 @@ export const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
+        backgroundColor: "#fff",
+        width: "100%",
         flexDirection: "column",
         // backgroundColor: $backgroundColor,
         alignItems: "center",
@@ -27,13 +29,14 @@ export const styles = StyleSheet.create({
         borderColor: "#fff",
     },
     whiteButton: {
-        backgroundColor: "#fff",
+        backgroundColor: $primaryColor,
     },
     transparentButtonText: {
         color: $primaryColor,
         fontSize: 19,
     },
     whiteButtonText: {
+        fontFamily: "bold",
         color: "#fff",
         fontSize: 19,
     },

@@ -1,4 +1,5 @@
 import React, { FC, ReactElement, useEffect, useState } from "react";
+import { useFonts } from "@use-expo/font";
 import { StyleSheet, View } from "react-native";
 import { NativeRouter, Route } from "react-router-native";
 
@@ -19,6 +20,9 @@ import { $backgroundColor } from "./Styles/variables";
 import ImportPage from "./Pages/Import";
 import { useEthereumContext } from "./Context/EthereumProvider";
 
+const regularFont = require("./assets/fonts/regular.ttf");
+const boldFont = require("./assets/fonts/bold.ttf");
+
 const AppContainer: FC = (): ReactElement => {
     const [showModal, setShowModal] = useState(false);
     const [challengerAddress, setChallengerAddress] = useState("");
@@ -29,14 +33,16 @@ const AppContainer: FC = (): ReactElement => {
     const ethereumContext = useEthereumContext();
     const socketContext = useSocketContext();
 
+    let [fontsLoaded] = useFonts({
+        regular: regularFont,
+        bold: boldFont,
+    });
+
     const handleConnection = (address: string): void => {
         socketContext.connect(address);
     };
 
     const handleChallenge = (data: any) => {
-        console.log("-------------------- te han enviado un challenge");
-        console.log(data);
-
         setChallenge(data.challenge);
         setChallengerAddress(data.address);
 
@@ -49,19 +55,16 @@ const AppContainer: FC = (): ReactElement => {
     };
 
     const onSignChallenge = async () => {
-        console.log("-------------------- estas firmando el challenge", challenge);
         setModalStatus(EStates.Validating);
 
         try {
             const message = await credentialsContext.signChallenge(challenge);
-            console.log("VAs a resolver");
+
             await socketContext.resolve(challengerAddress, message);
             await ethereumContext.validateSignature(challenge, message);
 
-            console.log(message);
             setModalStatus(EStates.Validated);
         } catch (error) {
-            console.log(error);
             setModalStatus(EStates.Error);
         }
     };
@@ -71,6 +74,9 @@ const AppContainer: FC = (): ReactElement => {
         socketContext.addListener(handleChallenge);
     }, []);
 
+    if (!fontsLoaded) {
+        return <View></View>;
+    }
     return (
         <NativeRouter>
             <View style={styles.container}>
@@ -94,6 +100,7 @@ export default AppContainer;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        fontFamily: "regular",
         backgroundColor: $backgroundColor,
         alignItems: "center",
         justifyContent: "center",

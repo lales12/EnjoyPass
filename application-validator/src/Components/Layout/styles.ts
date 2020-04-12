@@ -9,17 +9,19 @@ export const styles = StyleSheet.create({
         height: 100,
     },
     title: {
-        fontSize: 31,
-        fontWeight: "700",
-        marginLeft: 20,
+        fontSize: 36,
+        lineHeight: 37,
+        fontFamily: "bold",
+        marginLeft: 10,
         color: $gray,
-        width: 150,
+        width: 260,
     },
     logoContainer: {
         width: 30,
     },
     logo: {
-        width: 40,
+        width: 44,
+        height: 66,
         resizeMode: "contain",
     },
     container: {
