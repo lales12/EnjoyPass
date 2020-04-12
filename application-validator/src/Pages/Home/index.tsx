@@ -92,12 +92,12 @@ export default function Home() {
         })();
     }, []);
 
-    // if (hasPermission === null) {
-    //     return <View style={styles.container}></View>;
-    // }
-    // if (hasPermission === false) {
-    //     return <Text style={styles.noCameraText}>Necesitamos acceder a la camera</Text>;
-    // }
+    if (hasPermission === null) {
+        return <View style={styles.container}></View>;
+    }
+    if (hasPermission === false) {
+        return <Text style={styles.noCameraText}>Necesitamos acceder a la camera</Text>;
+    }
 
     return (
         <View style={styles.container}>
