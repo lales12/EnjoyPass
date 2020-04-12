@@ -47,24 +47,18 @@ export const EthereumProvider: FC<IProps> = (props: IProps) => {
                 }
 
                 throw Error("Invalid validity");
-            } catch (error) {
-                console.log("La cosa ha ido mal");
-                console.log(error);
-            }
+            } catch (error) {}
         }
 
         return 0;
     };
 
     const validateSignature = async (message: string, signedMessage: string): Promise<boolean> => {
-        console.log("Vas a validar las firmas");
-        console.log(message);
-        console.log(signedMessage);
         let sig = utils.splitSignature(signedMessage);
-        console.log(sig);
+
         if (contract) {
             const valid = await contract.checkUserValidity(DISEASE, message, sig.v, sig.r, sig.s);
-            console.log("Es valido?", valid);
+
             if (valid) {
                 return true;
             }

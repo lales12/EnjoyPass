@@ -52,7 +52,6 @@ export class SocketConnectionCollection {
         if (this._connectionRelation[address]) {
             const socketId = this._connectionRelation[address];
             console.log(socketId);
-            console.log(this._connections[socketId]);
             try {
                 this._connections[socketId].emit(channel, message);
             } catch (error) {
@@ -88,6 +87,7 @@ export class SocketConnectionCollection {
         return (data: IChallenge) => {
             const requesterAddress = this._reverseConnectionRelation[connection.id];
             console.log(`Envias el challenge a ${data.address} al destino ${requesterAddress}`);
+            console.log(data.challenge);
 
             if (this._connectionRelation[data.address]) {
                 return this.sendMessage(data.address, "challenge", { challenge: data.challenge, address: requesterAddress });

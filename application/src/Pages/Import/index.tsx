@@ -33,10 +33,10 @@ export default function ImportPage() {
     };
 
     if (hasPermission === null) {
-        return <Text>Requesting for camera permission</Text>;
+        return <Text></Text>;
     }
     if (hasPermission === false) {
-        return <Text>No access to camera</Text>;
+        return <Text style={styles.noCameraText}>Necesitamos acceso a la camara</Text>;
     }
 
     const onScanAgain = () => {

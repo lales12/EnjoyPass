@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     },
     title: {
         color: $primaryColor,
+        fontFamily: "bold",
         textAlign: "center",
         fontSize: 26,
         width: 220,
@@ -19,22 +20,25 @@ export const styles = StyleSheet.create({
         marginTop: 20,
         alignSelf: "center",
         overflow: "hidden",
-        height: 350,
-        width: 350,
+        height: 300,
+        width: 300,
     },
     qrMask: {
+        alignSelf: "center",
         width: 400,
         height: 500,
     },
+    noCameraText: {
+        color: "#fff",
+        fontSize: 18,
+        fontFamily: "regular",
+        width: 250,
+        alignSelf: "center",
+        textAlign: "center",
+        marginTop: 30,
+    },
     actionsContainer: {
-        position: "absolute",
-        height: 100,
-        bottom: 130,
-        width: "100%",
-
-        flex: 1,
-        flexDirection: "column",
-        justifyContent: "flex-end",
+        marginTop: 60,
     },
     textDanger: {
         fontSize: 20,

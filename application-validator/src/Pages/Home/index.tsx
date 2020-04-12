@@ -12,6 +12,9 @@ import { useCredentialsContext } from "../../Context/CredentialProvider";
 import { useSocketContext } from "../../Context/SocketProvider";
 import { useEthereumContext } from "../../Context/EthereumProvider";
 import VerificationModal, { EStates } from "../../Components/Modals/Verification";
+import { Layout } from "../../Components/Layout";
+
+let eventChallenge: string;
 
 export default function Home() {
     const [hasPermission, setHasPermission] = useState(null);
@@ -36,12 +39,18 @@ export default function Home() {
 
     const handleChallengeResolve = async (data: any) => {
         console.log("-------------------- te han enviado una respuesta");
+        console.log("el callenge to validate", eventChallenge);
+
+        //setChallenge(data.challenge);
         console.log(data);
-
-        setChallenge(data.challenge);
-
-        await ethereumContext.validateSignature(challenge, loadedAddress);
-        return setModalStatus(EStates.Validated);
+        try {
+            await ethereumContext.validateSignature(eventChallenge, data.challenge);
+            return setModalStatus(EStates.Validated);
+        } catch {
+            setModalStatus(EStates.NoValidated);
+        } finally {
+            setLoadedAddress("");
+        }
     };
 
     const handleError = (data: any) => {
@@ -53,17 +62,17 @@ export default function Home() {
         setLoadedAddress("");
     };
 
-    const onSendChallenge = async () => {
+    const onSendChallenge = () => {
+        eventChallenge = "Event challenge" + Math.random().toString();
+
         setInvalidCredentials(false);
         setShowModal(true);
         setModalStatus(EStates.Validating);
+        console.log("------------- Envias el challenge", eventChallenge);
 
-        try {
-            const eventChallenge = "Event challenge" + Math.random().toString;
-            await socketContext.sendChallenge(loadedAddress, eventChallenge);
-        } catch {
-            return setModalStatus(EStates.NoValidated);
-        }
+        socketContext.sendChallenge(loadedAddress, eventChallenge).catch(() => {
+            setModalStatus(EStates.NoValidated);
+        });
     };
 
     const onCloseModal = () => {
@@ -84,18 +93,18 @@ export default function Home() {
     }, []);
 
     if (hasPermission === null) {
-        return <Text>Requesting for camera permission</Text>;
+        return <View></View>;
     }
     if (hasPermission === false) {
-        return <Text>No access to camera</Text>;
+        return <Text style={styles.noCameraText}>Necesitamos acceder a la camera</Text>;
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             {showModal ? <VerificationModal modalState={modalStatus} onCloseModal={onCloseModal} /> : null}
 
-            <LayoutRegister title="Escanea el QR para comprobar">
-                <View style={styles.container}>
+            <Layout title="Escanea el QR para comprobar">
+                <View>
                     <View style={styles.qrContainer}>
                         <View style={styles.qrMask}>
                             <BarCodeScanner
@@ -105,8 +114,10 @@ export default function Home() {
                             />
                         </View>
                     </View>
-
-                    {invalidCredentials ? <Text style={styles.textDanger}>Qr invalido</Text> : null}
+                    <View style={styles.textContainer}>
+                        {!loadedAddress ? <Text style={styles.scanText}>Escanea enjoypass del asistente para validar</Text> : null}
+                        {invalidCredentials ? <Text style={styles.textDanger}>Qr invalido</Text> : null}
+                    </View>
 
                     <View style={styles.actionsContainer}>
                         {!!loadedAddress && (
@@ -121,7 +132,7 @@ export default function Home() {
                         )}
                     </View>
                 </View>
-            </LayoutRegister>
+            </Layout>
         </View>
     );
 }

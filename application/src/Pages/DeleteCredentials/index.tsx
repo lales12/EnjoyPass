@@ -32,15 +32,17 @@ const DeleteCredentialsPage: FC = (): ReactElement => {
 
     return (
         <Layout address={params.address} options={menuOptions}>
-            <View>
-                <Text style={styles.title}>¿Estas seguro que quieres eliminar las credenciales?</Text>
-                <Text style={styles.description}>Si las eliminas nunca mas podras recuperarlas y se perderan todos tus datos</Text>
-            </View>
+            <View style={styles.container}>
+                <View>
+                    <Text style={styles.title}>¿Estas seguro que quieres eliminar las credenciales?</Text>
+                    <Text style={styles.description}>Si las eliminas nunca más podrás recuperarlas y se perderan todos tus datos</Text>
+                </View>
 
-            <View style={styles.buttonContainer}>
-                <Button style={styles.deleteButton} textStyle={styles.deleteText} onPress={deleteAccount}>
-                    Eliminar cuenta
-                </Button>
+                <View style={styles.buttonContainer}>
+                    <Button style={styles.deleteButton} textStyle={styles.deleteText} onPress={deleteAccount}>
+                        Eliminar cuenta
+                    </Button>
+                </View>
             </View>
         </Layout>
     );

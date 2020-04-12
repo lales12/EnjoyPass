@@ -11,11 +11,19 @@ export const styles = StyleSheet.create({
         right: 0,
         bottom: 0,
         flex: 1,
-        backgroundColor: "#fff",
-        opacity: 0.6,
+        backgroundColor: $primaryColor,
         zIndex: 100,
         alignItems: "center",
         justifyContent: "center",
+    },
+    loaderText: {
+        color: "#fff",
+        fontSize: 18,
+        fontFamily: "regular",
+        width: 250,
+        alignSelf: "center",
+        textAlign: "center",
+        marginTop: 30,
     },
     formControl: {
         marginTop: 30,
@@ -33,9 +41,11 @@ export const styles = StyleSheet.create({
     buttonText: $buttonText,
     button: $buttonPrimary,
     buttonContainer: {
-        bottom: 40,
-        left: 30,
-        right: 30,
-        position: "absolute",
+        //alignSelf: "flex-end"
+        marginTop: 180,
+        // bottom: 40,
+        // left: 30,
+        // right: 30,
+        // position: "absolute",
     },
 });

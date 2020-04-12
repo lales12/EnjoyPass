@@ -19,22 +19,36 @@ export const styles = StyleSheet.create({
         marginTop: 20,
         alignSelf: "center",
         overflow: "hidden",
-        height: 350,
-        width: 350,
+        height: 300,
+        width: 300,
     },
     qrMask: {
+        alignSelf: "center",
         width: 400,
         height: 500,
     },
+    noCameraText: {
+        color: "#fff",
+        fontSize: 18,
+        fontFamily: "regular",
+        width: 250,
+        alignSelf: "center",
+        textAlign: "center",
+        marginTop: 30,
+    },
     actionsContainer: {
-        position: "absolute",
+        marginTop: 40,
+    },
+    textContainer: {
         height: 100,
-        bottom: 130,
-        width: "100%",
-
-        flex: 1,
-        flexDirection: "column",
-        justifyContent: "flex-end",
+        width: 250,
+        alignSelf: "center",
+        marginTop: 40,
+    },
+    scanText: {
+        fontFamily: "regular",
+        color: $primaryColor,
+        textAlign: "center",
     },
     textDanger: {
         fontSize: 20,
@@ -44,6 +58,7 @@ export const styles = StyleSheet.create({
     },
     buttonEmpty: {
         ...$buttonEmpty,
+        marginTop: 20,
     },
     textButtonEmpty: {
         ...$buttonTextEmpty,

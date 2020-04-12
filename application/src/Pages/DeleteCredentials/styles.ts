@@ -1,14 +1,20 @@
 import { StyleSheet } from "react-native";
 import { $buttonEmpty, $buttonDelete } from "../../Styles/components";
-import { $dangerColor } from "../../Styles/variables";
+import { $dangerColor, $primaryColor } from "../../Styles/variables";
 
 export const styles = StyleSheet.create({
+    container: {
+        marginTop: 100,
+    },
     title: {
-        fontSize: 24,
+        fontSize: 26,
+        color: $primaryColor,
+        fontFamily: "regular",
         textAlign: "center",
     },
     description: {
         fontSize: 18,
+        fontFamily: "regular",
         textAlign: "center",
         marginTop: 20,
     },
@@ -17,7 +23,7 @@ export const styles = StyleSheet.create({
     },
     deleteButton: {
         ...$buttonDelete,
-        width: 150,
+        width: 200,
         alignSelf: "center",
     },
     deleteText: {

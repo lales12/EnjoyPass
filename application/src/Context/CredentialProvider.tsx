@@ -91,11 +91,15 @@ export const CredentialsProvider: FC<IProps> = (props): ReactElement => {
     };
 
     const generateCredentials = async (passphrase: string): Promise<string> => {
-        const wallet = Wallet.createRandom(Date.now);
+        return new Promise((resolve, reject) => {
+            const wallet = Wallet.createRandom(Date.now);
 
-        await SecureStore.setItemAsync(PRIVATE_KEY, wallet.privateKey);
-
-        return wallet.address;
+            SecureStore.setItemAsync(PRIVATE_KEY, wallet.privateKey)
+                .then(() => {
+                    resolve(wallet.address);
+                })
+                .catch(() => reject("Errro"));
+        });
     };
 
     return (

@@ -6,8 +6,8 @@ import { $label, $input, $buttonPrimary, $buttonText, $alertText } from "../../S
 export const styles = StyleSheet.create({
     title: {
         fontSize: 31,
-        marginTop: 40,
-        fontWeight: "700",
+        marginTop: 60,
+        fontFamily: "bold",
         color: $gray,
         width: 300,
     },
@@ -16,15 +16,16 @@ export const styles = StyleSheet.create({
         height: 20,
     },
     backButton: {
-        paddingTop: 10,
+        paddingTop: 30,
         paddingLeft: 4,
         flexDirection: "row",
     },
     backText: {
-        width: 50,
+        width: 70,
+        marginLeft: 4,
         fontSize: 16,
         color: $primaryColor,
-        fontWeight: "bold",
+        fontFamily: "bold",
     },
     arrow: {
         fontWeight: "bold",

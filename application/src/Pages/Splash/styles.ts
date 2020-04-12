@@ -12,7 +12,6 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "column",
-        // backgroundColor: $backgroundColor,
         alignItems: "center",
         justifyContent: "center",
     },
@@ -31,10 +30,12 @@ export const styles = StyleSheet.create({
     },
     transparentButtonText: {
         color: $primaryColor,
-        fontSize: 19,
+        fontFamily: "bold",
+        fontSize: 16,
     },
     whiteButtonText: {
         color: "#fff",
-        fontSize: 19,
+        fontFamily: "bold",
+        fontSize: 16,
     },
 });
