@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@types/react-router-native": "^5.1.0",
-    "qrcode": "^1.4.4"
-  }
-}

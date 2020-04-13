@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "EnjoyPass-Validator",
-    "slug": "application",
+    "name": "EnjoyPassValidator",
+    "slug": "enjoypassvalidator",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -26,7 +26,7 @@
     },
     "android": {
       "package": "com.enjoypassvalidator.enjoypassvalidator",
-      "versionCode": 1
+      "versionCode": 2
     }
   }
 }
