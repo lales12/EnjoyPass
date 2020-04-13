@@ -17,6 +17,10 @@ Tienes que entrar en la web [www.enjoypass.es](http://enjoypass.es) y descargar 
 
  En la pantalla de inicio pulsa crear nueva cuenta y verás tu código QR. Si presionas el botón ver código, te saldrá tu dirección pública.
 
+Si quieres probar una cuenta validada, podeis importar esta cuenta.
+![qr](https://github.com/lales12/EnjoyPass/blob/develop/images/qr-demo.png)
+
+
 Para validar tu código QR en blockchain, tienes que contactar con [enjoypass.app@gmail.com](mailto:enjoypass.app@gmail.com) y enviar tu dirección pública para que lo validemos como si fueramos tu médico.
 
 También puedes importar tu cuenta en el caso que quieras cambiar de dispositivo móvil. En este caso, en el menú de opciones, tienes que hacer clic en exportar y desde tu nuevo dispositivo móvil, pulsar importar cuenta y seguir las instrucciones. 
